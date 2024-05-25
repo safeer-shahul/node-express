@@ -1,15 +1,14 @@
-const http = require('http')
 const express = require('express')
+const bodyParser = require('body-parser')
 const app = express()
 
+const adminRoutes = require('./routes/admin')
+const shopRoutes = require('./routes/shop')
 
-app.use('/users',(req,res,next)=>{
-    console.log('middleware2')
-    res.send('<h1>User</h1>')
-})
+// app.use(bodyParser.urlencoded({ extended: true })); old method
+app.use(express.urlencoded({ extended: true })); 
 
-app.use('/',(req,res,next)=>{
-    console.log('middleware2')
-    res.send('<h1>Hello from Express</h1>')
-})
+app.use(adminRoutes);
+app.use(shopRoutes)
+
 app.listen(3000, () => console.log('Server running...'));
