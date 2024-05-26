@@ -5,9 +5,13 @@ const router = express.Router()
 
 const rootDir = require('../util/path')
 
+const adminData = require('./admin')
+
 router.get('/',(req,res,next)=>{
-    // console.log('middleware2')
-    res.sendFile(path.join(rootDir,"views","shop.html"))
+    // console.log(adminData.products)
+    // res.sendFile(path.join(rootDir,"views","shop.html"))
+    const products = adminData.products
+    res.render('shop',{prods: products, docTitle: 'My Shop'})
 })
 
 module.exports = router
